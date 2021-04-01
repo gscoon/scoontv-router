@@ -1,0 +1,18 @@
+{
+  "name": "scoontv-router",
+  "scripts": {
+    "dev": "tsnd --respawn --transpile-only ./app/index.ts",
+    "docker:build": "docker build -t art-router-image ./docker/.",
+    "pm2": "pm2 start ./app/index.ts --name router"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "redbird": "^0.10.0",
+    "ts-node-dev": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.22",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
+}
