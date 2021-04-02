@@ -11,11 +11,12 @@ require('dotenv').config({
 });
 
 const port = parseInt(process.env.ROUTER_PORT || '8888');
+const sslPath = process.env.SSL_PATH ? process.env.SSL_PATH : Path.join(rootParentDir, './ssl');
 
 const proxy = require('redbird')({
     port,
     letsencrypt: {
-        path: Path.join(rootParentDir, './ssl'),
+        path: sslPath,
         // port: 9999 // LetsEncrypt minimal web server port for handling challenges. Routed 80->9999, no need to open 9999 in firewall. Default 3000 if not defined.
     },
     ssl: {
