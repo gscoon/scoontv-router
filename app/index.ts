@@ -13,6 +13,9 @@ require('dotenv').config({
 const port = parseInt(process.env.ROUTER_PORT || '8888');
 const sslPath = process.env.SSL_PATH ? process.env.SSL_PATH : Path.join(rootParentDir, './ssl');
 
+// milliseconds
+const timeout = process.env.PROXY_TIMEOUT ? parseInt(process.env.PROXY_TIMEOUT) : 600000;
+
 const proxy = require('redbird')({
     port,
     letsencrypt: {
@@ -22,7 +25,9 @@ const proxy = require('redbird')({
     ssl: {
         // http2: true,
         port: 443, // SSL port used to serve registered https routes with LetsEncrypt certificate.
-    }
+    },
+    timeout,
+    proxyTimeout: timeout,
 });
 
 registerRoutes(Path.join(rootDir, 'local.routes.conf'));
