@@ -5,6 +5,9 @@ const fs = require('fs');
 const rootDir = Path.join(__dirname, './../');
 const rootParentDir = Path.join(rootDir, './../');
 
+// https://stackoverflow.com/questions/57115918/maxlistenersexceededwarning-possible-eventemitter-memory-leak-dete
+process.setMaxListeners(100);
+
 // load environment variables
 require('dotenv').config({
     path: Path.join(rootDir, '.env'),
